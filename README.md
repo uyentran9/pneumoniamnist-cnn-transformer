@@ -139,7 +139,7 @@ The dataset and trained checkpoints do not need to be committed to GitHub; they 
 
 | Resource | Contents |
 |---|---|
-| [Jupyter notebook](files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [HTML](files/pneumoniamnist-cnn-transformer-uyentran.html) | Code, explanations, and experiment outputs |
+| [Jupyter notebook](files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [HTML](https://uyentran9.github.io/pneumoniamnist-cnn-transformer/files/pneumoniamnist-cnn-transformer-uyentran.html) | Code, explanations, and experiment outputs |
 | [Technical report (PDF)](files/pneumoniamnist_cnn_transformer_uyentran.pdf) | Methods, results, discussion, and limitations |
 | [Model and experimental pipeline](images/vision-transformer-pneumonia4.png) | Architecture and workflow diagram |
 | [Training curves](images/training_curves.png) · [Confusion matrices](images/confusion_matrices.png) | Multi-seed learning behavior and test errors |
