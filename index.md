@@ -11,7 +11,6 @@ author_profile: true
        style="max-width: 100%; height: auto; border-radius: 14px;" />
 </p>
 
-# Comparative Evaluation of ImageNet-Pretrained ResNet-18 and DeiT-Tiny for Pediatric Pneumonia Classification
 
 An independent educational study comparing **a convolutional neural network (ResNet-18)** and **a Vision Transformer (DeiT-Tiny)** for pediatric chest X-ray classification using **PneumoniaMNIST+ 224**.
 
@@ -20,7 +19,7 @@ An independent educational study comparing **a convolutional neural network (Res
 > **Framework:** PyTorch · `timm` · MedMNIST  
 > **Experimental scope:** Two ImageNet-pretrained models · Three random seeds · Six full fine-tuning runs
 
-**Project materials:** [Jupyter notebook]({{ site.baseurl }}/files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [Notebook (HTML)]({{ site.baseurl }}/files/pneumoniamnist-cnn-transformer-uyentran.html) · [Technical report (PDF)]({{ site.baseurl }}/files/pneumoniamnist_cnn_transformer_uyentran.pdf) · [GitHub repository](https://github.com/uyentran9/pneumoniamnist-cnn-transformer)
+**Project materials:** [Jupyter notebook]({{ site.baseurl }}/code/) · [Notebook (HTML)]({{ site.baseurl }}/code/) · [Technical report (PDF)]({{ site.baseurl }}/report/) · [GitHub repository](https://github.com/uyentran9/pneumoniamnist-cnn-transformer)
 
 ## Research overview
 
@@ -154,9 +153,9 @@ The recorded environment used **Python 3.13.5**, **PyTorch 2.14.1**, **timm 1.0.
 
 | Material | Link |
 |---|---|
-| Executable Jupyter notebook | [Open `.ipynb`]({{ site.baseurl }}/files/pneumoniamnist-cnn-transformer-uyentran.ipynb) |
-| Notebook with saved outputs | [View HTML]({{ site.baseurl }}/files/pneumoniamnist-cnn-transformer-uyentran.html) |
-| Technical report | [Read PDF]({{ site.baseurl }}/files/pneumoniamnist_cnn_transformer_uyentran.pdf) |
+| Executable Jupyter notebook | [Code page]({{ site.baseurl }}/code/) |
+| Notebook with saved outputs (HTML) | [Code page]({{ site.baseurl }}/code/) |
+| Technical report (PDF) | [Report page]({{ site.baseurl }}/report/) |
 | Source code and reproduction instructions | [GitHub repository](https://github.com/uyentran9/pneumoniamnist-cnn-transformer) |
 | Dataset and benchmark documentation | [MedMNIST / MedMNIST+](https://medmnist.com/) |
 
@@ -168,6 +167,6 @@ The technical report includes the complete method, per-run results, limitations,
 Independent educational research project · 2026  
 [Academic portfolio](https://uyentran9.github.io/uyentran-ai-blog/)
 
-**Research-use notice:** This project is not a clinically validated diagnostic system and must not be used for medical diagnosis or medical decision-making.
+**Research-use notice:** This project is not a clinically validated diagnostic system and must not be used for medical diagnosis or medical decision-making.  
 
 Thank you for visiting — and for being part of my journey 🌱
