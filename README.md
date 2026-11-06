@@ -16,7 +16,7 @@ author_profile: true
 
 **PyTorch · PneumoniaMNIST+ 224 · ResNet-18 · DeiT-Tiny · Full Fine-Tuning**
 
-[Jupyter notebook](notebooks/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [Notebook (HTML)](notebooks/pneumoniamnist-cnn-transformer-uyentran.html) · [Technical report (PDF)](reports/pneumoniamnist_technical_report.pdf) · [Results](#results)
+[Jupyter notebook](files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [Notebook (HTML)](files/pneumoniamnist-cnn-transformer-uyentran.html) · [Technical report (PDF)](files/pneumoniamnist_cnn_transformer_uyentran.pdf) · [Results](#results)
 
 ## Overview
 
@@ -99,7 +99,7 @@ ResNet-18 showed decreasing or stabilizing validation loss across all three seed
 
 Across the six test evaluations, there were **0–2 false negatives** (Pneumonia predicted as Normal) and **40–59 false positives** (Normal predicted as Pneumonia) per run. Both models therefore achieved high Pneumonia sensitivity but lower Normal specificity at the evaluated decision rule.
 
-Detailed per-seed results are available in [test_results_per_seed.csv](results/test_results_per_seed.csv) and [validation_summary.csv](results/validation_summary.csv).
+Detailed run-level results are available in [test_results_per_seed.csv](files/test_results_per_seed.csv) and [validation_summary.csv](files/validation_summary.csv).
 
 ## Interpretation and Limitations
 
@@ -121,30 +121,30 @@ The experiment is implemented in a single Jupyter notebook with PyTorch, `timm`,
 git clone https://github.com/uyentran9/pneumoniamnist-cnn-transformer.git
 cd pneumoniamnist-cnn-transformer
 
-# The notebook expects these directories at the project root.
+# Prepare output folders and the directory used by the current notebook to locate the project root.
 mkdir -p notebooks data images results checkpoints
 
 # Install the main dependencies.
 python -m pip install torch torchvision timm medmnist numpy pandas matplotlib scikit-learn notebook
 
 # Open the notebook.
-jupyter notebook notebooks/pneumoniamnist-cnn-transformer-uyentran.ipynb
+jupyter notebook files/pneumoniamnist-cnn-transformer-uyentran.ipynb
 ```
 
-Run **Parts 0–6 in order**. The notebook locates the project root using the `notebooks/` and `data/` directories, downloads the dataset and pretrained weights when necessary, and produces training histories, best model checkpoints, evaluation CSVs, and figures. To reproduce Part 5, first run Part 4 or provide the six saved checkpoints in `checkpoints/`.
+Run **Parts 0–6 in order**. The current notebook locates the project root by looking for `notebooks/` and `data/` directories (the `notebooks/` folder can be empty because the notebook itself is stored in `files/`). The dataset and ImageNet-pretrained weights are downloaded when needed. Training creates six best-checkpoint files in `checkpoints/`, while CSVs and figures are saved in `results/` and `images/`. To run Part 5 without retraining, all six checkpoints must be available in `checkpoints/`.
 
-Large dataset files and trained checkpoints are not required in the GitHub repository to reproduce the workflow; they can be generated locally.
+The dataset and trained checkpoints do not need to be committed to GitHub; they can be downloaded or generated locally. The CSV files linked below document the reported results.
 
 ## Research Materials
 
 | Resource | Contents |
 |---|---|
-| [Jupyter notebook](notebooks/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [HTML](notebooks/pneumoniamnist-cnn-transformer-uyentran.html) | Code, explanations, and experiment outputs |
-| [Technical report (PDF)](reports/pneumoniamnist_technical_report.pdf) | Methods, results, discussion, and limitations |
+| [Jupyter notebook](files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [HTML](files/pneumoniamnist-cnn-transformer-uyentran.html) | Code, explanations, and experiment outputs |
+| [Technical report (PDF)](files/pneumoniamnist_cnn_transformer_uyentran.pdf) | Methods, results, discussion, and limitations |
 | [Model and experimental pipeline](images/vision-transformer-pneumonia4.png) | Architecture and workflow diagram |
 | [Training curves](images/training_curves.png) · [Confusion matrices](images/confusion_matrices.png) | Multi-seed learning behavior and test errors |
-| [Test metrics](results/test_results_per_seed.csv) · [Summary](results/test_results_summary.csv) | Per-seed metrics and mean ± SD |
-| [Validation results](results/validation_summary.csv) · [Seed summary](results/validation_seed_summary.csv) | Selected epochs, validation scores, and run times |
+| [Test results by seed](files/test_results_per_seed.csv) · [Test summary](files/test_results_summary.csv) | Run-level test metrics and mean ± SD |
+| [Validation results](files/validation_summary.csv) | Checkpoint selection, validation scores, and training times |
 
 ## References and Attribution
 
@@ -157,4 +157,3 @@ Large dataset files and trained checkpoints are not required in the GitHub repos
 **Author:** Victoria Tran (My-Uyen Tran) · [Academic portfolio](https://uyentran9.github.io/uyentran-ai-blog/)
 
 **Research-use notice:** This is an educational benchmark study, not a clinically validated diagnostic system. It should not be used for medical diagnosis or decision-making.
-
