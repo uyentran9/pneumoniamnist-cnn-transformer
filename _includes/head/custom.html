@@ -1,0 +1,62 @@
+{% include base_path %}
+
+<!-- start custom head snippets -->
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/fontawesome.css">
+
+<!-- Favicons -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- Academicons -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
+
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Mermaid -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({startOnLoad:true, theme:'default'});
+  await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- Plotly -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.1/plotly.min.js"></script>
+
+<!-- Improve Follow button contrast in mobile Light Mode -->
+<style>
+@media (max-width: 1023px) {
+  html:not([data-theme="dark"])
+  .author__urls-wrapper > button.btn.btn--inverse {
+    color: #243b53 !important;
+    background-color: #f0f5fa !important;
+    border: 1px solid #60788b !important;
+    font-weight: 600;
+  }
+}  
+
+
+/* Improve Light/Dark toggle icon visibility */
+#theme-toggle #theme-icon {
+  color: #243b53 !important;
+  font-size: 1.25rem;
+  opacity: 1 !important;
+}
+
+/* Dark Mode */
+html[data-theme="dark"] #theme-toggle #theme-icon {
+  color: #ffffff !important;
+}
+
+</style>
+
+<!-- end custom head snippets -->
