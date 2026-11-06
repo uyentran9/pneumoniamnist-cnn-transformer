@@ -5,257 +5,89 @@ permalink: /dataset/
 author_profile: true
 ---
 
-<!--
-<p>Three files are used in this competition: the training set, the test set, and a sample submission file showing the required output format. Each preview below shows the first 20 rows and every column. Use the download buttons to get the full files.</p>
+## PneumoniaMNIST+ 224
 
+This project uses **PneumoniaMNIST+ 224**, a standardized dataset of **5,856 pediatric chest X-ray images** for binary classification: **Normal (0)** or **Pneumonia (1)**. It is the 224 × 224 version of PneumoniaMNIST in the MedMNIST+ benchmark. The higher-resolution version retains the same images and official train/validation/test splits as PneumoniaMNIST.
 
-<div class="data-note">
-  <strong>Note:</strong> competition data is redistributed here only if permitted by the AIO competition rules. If a file below fails to load, it has not been uploaded to <code>/files/</code> yet.
-</div>
-
-
-<section class="data-block">
-  <h2>Training set — <code>aio26_train.csv</code></h2>
-  <p>12,000 rows, 20 columns (18 predictors, <code>id</code>, and the target <code>Status</code>).</p>
-  <a class="data-download-btn" href="{{ site.baseurl }}/files/aio26_train.csv" download>⬇ Download aio26_train.csv</a>
-  <div class="data-table-wrap">
-    <table id="train-table"><tbody><tr><td>Loading preview…</td></tr></tbody></table>
-  </div>
-</section>
-
-<section class="data-block">
-  <h2>Test set — <code>aio26_test.csv</code></h2>
-  <p>10,000 rows, 19 columns (same predictors as training, no <code>Status</code>).</p>
-  <a class="data-download-btn" href="{{ site.baseurl }}/files/aio26_test.csv" download>⬇ Download aio26_test.csv</a>
-  <div class="data-table-wrap">
-    <table id="test-table"><tbody><tr><td>Loading preview…</td></tr></tbody></table>
-  </div>
-</section>
-
-<section class="data-block">
-  <h2>Sample submission — <code>sample_submission.csv</code></h2>
-  <p>Required output format: <code>id</code>, <code>Status_C</code>, <code>Status_CL</code>, <code>Status_D</code>.</p>
-  <a class="data-download-btn" href="{{ site.baseurl }}/files/aio26_sample-submission.csv" download>⬇ Download aio26_sample-submission.csv</a>
-  <div class="data-table-wrap">
-    <table id="sample-table"><tbody><tr><td>Loading preview…</td></tr></tbody></table>
-  </div>
-</section>
-
-<style>
-.data-note {
-  margin: 1em 0 2em;
-  padding: 0.75em 1em;
-  font-size: 0.9rem;
-  color: var(--global-text-color-light, #666);
-  background: var(--global-code-background-color, #f7f7f8);
-  border-left: 3px solid var(--global-border-color, #e8e8e8);
-  border-radius: 4px;
-}
-.data-block { margin-bottom: 3em; }
-.data-download-btn {
-  display: inline-block;
-  margin: 0.5em 0 1em;
-  padding: 0.5em 1.1em;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #fff !important;
-  background: var(--global-base-color, #2f6f4f);
-  border-radius: 4px;
-  text-decoration: none !important;
-}
-.data-download-btn:hover { opacity: 0.85; }
-.data-table-wrap {
-  max-width: 100%;
-  overflow-x: auto;
-  border: 1px solid var(--global-border-color, #e8e8e8);
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-.data-table-wrap table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 100%;
-  font-size: 0.82rem;
-  white-space: nowrap;
-}
-.data-table-wrap th, .data-table-wrap td {
-  padding: 0.4em 0.8em;
-  border-bottom: 1px solid var(--global-border-color, #e8e8e8);
-  text-align: left;
-}
-.data-table-wrap thead th {
-  position: sticky;
-  top: 0;
-  background: var(--global-base-color, #2f6f4f);
-  color: #fff;
-  font-weight: 600;
-  z-index: 1;
-}
-.data-table-wrap tbody tr:nth-child(even) {
-  background: var(--global-code-background-color, #f7f7f8);
-}
-.data-error {
-  padding: 1em;
-  font-size: 0.85rem;
-  color: var(--global-text-color-light, #888);
-}
-</style>
-
-<script>
-(function () {
-  var ROWS_TO_SHOW = 20;
-
-  function parseCSV(text) {
-    var rows = [];
-    var row = [];
-    var field = '';
-    var inQuotes = false;
-    for (var i = 0; i < text.length; i++) {
-      var c = text[i];
-      if (inQuotes) {
-        if (c === '"') {
-          if (text[i + 1] === '"') { field += '"'; i++; }
-          else { inQuotes = false; }
-        } else { field += c; }
-      } else {
-        if (c === '"') { inQuotes = true; }
-        else if (c === ',') { row.push(field); field = ''; }
-        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
-        else if (c === '\r') { /* skip */ }
-        else { field += c; }
-      }
-    }
-    if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
-    return rows.filter(function (r) { return r.length > 1 || (r.length === 1 && r[0] !== ''); });
-  }
-
-  function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  }
-
-  function renderTable(tableId, rows) {
-    var table = document.getElementById(tableId);
-    if (!rows.length) {
-      table.innerHTML = '<tbody><tr><td>No data found.</td></tr></tbody>';
-      return;
-    }
-    var header = rows[0];
-    var body = rows.slice(1, 1 + ROWS_TO_SHOW);
-    var html = '<thead><tr>' + header.map(function (h) {
-      return '<th>' + escapeHtml(h) + '</th>';
-    }).join('') + '</tr></thead><tbody>';
-    body.forEach(function (r) {
-      html += '<tr>' + r.map(function (cell) {
-        return '<td>' + (cell === '' ? '<em>—</em>' : escapeHtml(cell)) + '</td>';
-      }).join('') + '</tr>';
-    });
-    html += '</tbody>';
-    table.innerHTML = html;
-  }
-
-  function loadTable(url, tableId) {
-    fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.text();
-      })
-      .then(function (text) {
-        renderTable(tableId, parseCSV(text));
-      })
-      .catch(function () {
-        document.getElementById(tableId).outerHTML =
-          '<div class="data-error">This file has not been uploaded to <code>' + url + '</code> yet.</div>';
-      });
-  }
-
-  var base = '{{ site.baseurl }}';
-  loadTable(base + '/files/aio26_train.csv', 'train-table');
-  loadTable(base + '/files/aio26_test.csv', 'test-table');
-  loadTable(base + '/files/aio26_sample-submission.csv', 'sample-table');
-})();
-</script>
--->  
-
-## BloodMNIST (MedMNIST v2)
-
-This project uses **BloodMNIST**, a standardized subset of the **MedMNIST v2** benchmark comprising microscopic images of peripheral blood cells. The dataset is used here to study **gradient propagation, early-layer trainability, and optimization behavior in multilayer perceptrons (MLPs)**, rather than to develop a clinical diagnostic system.
-
-## Dataset Overview
+### Dataset Overview
 
 | Property | Description |
 |---|---|
-| Data modality | Peripheral blood-cell microscopy |
-| Task | Eight-class image classification |
-| Total samples | 17,092 |
-| Image format | RGB, 28 × 28 pixels (3 channels) |
-| Training split | 11,959 images |
-| Validation split | 1,712 images |
-| Test split | 3,421 images |
-| Source | BloodMNIST, MedMNIST v2 |
+| Modality | Pediatric chest X-rays |
+| Task | Binary image classification |
+| Images | 5,856 |
+| Original dataset format | Grayscale, 224 × 224 pixels (1 channel) |
+| Labels | Normal (0), Pneumonia (1) |
+| Source | PneumoniaMNIST+, MedMNIST+; originally based on Kermany et al. (2018) |
 
-The eight classes are **basophil, eosinophil, erythroblast, immature granulocytes, lymphocyte, monocyte, neutrophil, and platelet**. The original images and annotations are described by Acevedo et al. (2020); the standardized BloodMNIST benchmark is documented by Yang et al. (2023).
+### Sample X-ray Images
 
-## Data Access
+The examples below are from the training split and illustrate both classes.
 
-The dataset files are **not redistributed in this repository**. To obtain the original benchmark data, use the official MedMNIST distribution:
+![Examples of Normal and Pneumonia chest X-rays from the training set]({{ '/images/sample_xrays.png' | relative_url }})
 
-- [BloodMNIST dataset on Zenodo](https://zenodo.org/records/10519652/files/bloodmnist.npz?download=1)
-- [MedMNIST official website](https://medmnist.com/)
-- [MedMNIST Python package and documentation](https://github.com/MedMNIST/MedMNIST)
+## Official Splits and Class Distribution
 
-The experiments load the dataset through the `medmnist` Python package. When `download=True`, the package downloads the dataset if it is not already present in the specified data directory.
+The study uses the official splits without creating a new train/test partition.
+
+| Split | Normal (0) | Pneumonia (1) | Total |
+|---|---:|---:|---:|
+| Train | 1,214 (25.79%) | 3,494 (74.21%) | 4,708 |
+| Validation | 135 (25.76%) | 389 (74.24%) | 524 |
+| Test | 234 (37.50%) | 390 (62.50%) | 624 |
+
+![Class distribution across the official training, validation, and test splits]({{ '/images/class_distribution.png' | relative_url }})
+
+Pneumonia is the majority class in all three splits, but its proportion decreases from approximately **74%** in training and validation to **62.5%** in test. Because accuracy alone can obscure class-specific errors, the study uses **macro-F1** as its primary model-selection and comparison metric and also reports sensitivity, specificity, accuracy, and ROC-AUC.
 
 ## Data Loading and Preprocessing
 
-The experiments retain the **official training, validation, and test partitions**. Images are converted to PyTorch tensors and normalized using the fixed RGB channel statistics configured in the experimental notebook:
+ResNet-18 and DeiT-Tiny use the **same preprocessing pipeline**:
 
-- **Mean:** `[0.7943, 0.6597, 0.6962]`
-- **Standard deviation:** `[0.2156, 0.2416, 0.1179]`
-
-Each image has tensor shape `[3, 28, 28]` before being flattened to **2,352 input features** for the MLP. The same preprocessing transformation is applied to each split.
-
-The following example illustrates dataset loading; the complete experimental implementation is provided in the [Jupyter notebook](https://github.com/uyentran9/gradient-vanishing/tree/main/notebooks).
+1. Convert each grayscale image to three identical channels, as required by the ImageNet-pretrained models.
+2. Apply `ToTensor()` to convert pixel values to `float32` in the range `[0, 1]`.
+3. Normalize using the ImageNet channel mean `[0.485, 0.456, 0.406]` and standard deviation `[0.229, 0.224, 0.225]`.
 
 ```python
-from medmnist import BloodMNIST
 from torchvision import transforms
 
-transform = transforms.Compose([
+shared_transform = transforms.Compose([
+    transforms.Grayscale(num_output_channels=3),
     transforms.ToTensor(),
     transforms.Normalize(
-        mean=[0.7943, 0.6597, 0.6962],
-        std=[0.2156, 0.2416, 0.1179],
-    ),
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
+    )
 ])
-
-train_dataset = BloodMNIST(
-    split="train", transform=transform, download=True, root="./data"
-)
-val_dataset = BloodMNIST(
-    split="val", transform=transform, download=True, root="./data"
-)
-test_dataset = BloodMNIST(
-    split="test", transform=transform, download=True, root="./data"
-)
 ```
 
-## Dataset Usage in This Study
+Each processed image has shape **`(3, 224, 224)`**. The experiment uses a batch size of **16**, shuffles training data with a seeded generator, and does not shuffle validation or test data. **No random data augmentation** is applied. The complete loading and training code is available on the [Code page]({{ '/code/' | relative_url }}).
 
-- **Training split:** Used to optimize the MLP parameters and record training-time gradient and optimization measurements.
-- **Validation split:** Used to evaluate validation loss, classification accuracy, and macro-F1.
-- **Test split:** Loaded for dataset verification; no test-set classification performance is reported in the technical report.
+## Data Access
 
-The primary objective is to investigate model optimization under controlled depth and activation-function comparisons. The reported classification metrics are secondary to the analysis of gradient propagation and early-layer trainability.
+The dataset is **not redistributed in this repository**. It can be downloaded through the official MedMNIST distribution:
+
+- [PneumoniaMNIST+ 224 dataset (.npz) — Zenodo](https://zenodo.org/records/10519652/files/pneumoniamnist_224.npz?download=1)
+- [MedMNIST website](https://medmnist.com/)
+- [MedMNIST Python package and documentation](https://github.com/MedMNIST/MedMNIST)
+
+The project notebook loads the official dataset using `medmnist.PneumoniaMNIST` with `size=224` and `download=True`.
+
+## Dataset Usage and Limitations
+
+- **Training set:** Used to update model parameters during full fine-tuning.
+- **Validation set:** Used to select the best checkpoint for each model and random seed based on macro-F1.
+- **Test set:** Used only for final evaluation after checkpoint selection.
+
+MedMNIST creates its training and validation splits from the original source training data and uses the source validation data as its test split. The dataset is limited to a particular source and does not establish performance across other hospitals, patient populations, or imaging conditions. **This experiment is for research and education, not clinical use.**
 
 ## Attribution and References
 
-BloodMNIST is distributed as part of MedMNIST v2 under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license. The benchmark authors request attribution to the MedMNIST publications and the underlying source dataset.
+PneumoniaMNIST is distributed under **CC BY 4.0**. Please acknowledge both MedMNIST and the original source dataset when reusing it.
 
 1. **Yang, J., et al. (2023).** “MedMNIST v2—A large-scale lightweight benchmark for 2D and 3D biomedical image classification.” *Scientific Data*, 10, 41. [DOI](https://doi.org/10.1038/s41597-022-01721-8).
-2. **Acevedo, A., et al. (2020).** “A dataset of microscopic peripheral blood cell images for development of automatic recognition systems.” *Data in Brief*, 30, 105474. [DOI](https://doi.org/10.1016/j.dib.2020.105474).
+2. **Kermany, D. S., et al. (2018).** “Identifying Medical Diagnoses and Treatable Diseases by Image-Based Deep Learning.” *Cell*, 172(5), 1122–1131.e9. [DOI](https://doi.org/10.1016/j.cell.2018.02.010).
 
-**Note:** MedMNIST is intended for research and educational benchmarking, not clinical use.
 
 ---
 
