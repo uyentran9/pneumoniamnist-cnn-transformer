@@ -16,7 +16,7 @@ author_profile: true
 
 **PyTorch · PneumoniaMNIST+ 224 · ResNet-18 · DeiT-Tiny · Full Fine-Tuning**
 
-[Jupyter notebook](files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [Notebook (HTML)](files/pneumoniamnist-cnn-transformer-uyentran.html) · [Technical report (PDF)](files/pneumoniamnist_cnn_transformer_uyentran.pdf) · [Results](#results)
+[Jupyter notebook](files/pneumoniamnist-cnn-transformer-uyentran.ipynb) · [Notebook (HTML)](https://uyentran9.github.io/pneumoniamnist-cnn-transformer/files/pneumoniamnist-cnn-transformer-uyentran.html) · [Technical report (PDF)](files/pneumoniamnist_cnn_transformer_uyentran.pdf) · [Results](#results)
 
 ## Overview
 
