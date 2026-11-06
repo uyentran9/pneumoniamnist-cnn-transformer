@@ -23,7 +23,7 @@ The `.ipynb` file contains dataset inspection and preprocessing, pretrained mode
   </a>
 
   <a class="code-btn code-secondary-btn"
-     href="https://github.com/uyentran9/bloodmnist-mlp-cnn/blob/HEAD/files/pneumoniamnist-cnn-transformer-uyentran.ipynb"
+     href="https://github.com/uyentran9/pneumoniamnist-cnn-transformer/blob/main/files/pneumoniamnist-cnn-transformer-uyentran.ipynb"
      target="_blank"
      rel="noopener noreferrer">
     ↗ View on GitHub
