@@ -5,38 +5,35 @@ permalink: /report/
 author_profile: true
 ---
 
-## Technical Report
+The technical report documents the experimental design, model architectures, training protocol, results, and limitations of **Comparative Evaluation of ImageNet-Pretrained ResNet-18 and DeiT-Tiny for Pediatric Pneumonia Classification**.
 
-This three-page technical report documents the experimental design, model architectures, training and evaluation protocol, results, and limitations of **From MLP to CNN: Spatial Feature Learning and Classifier-Head Efficiency on BloodMNIST**.
-
-The study compares an MLP baseline (M0) with two CNN architectures (M1 with Flatten and M2 with Global Average Pooling). It examines classification performance and trainable parameter efficiency using the official BloodMNIST splits and a fixed, single-seed training protocol. The report includes validation and test results, M1 learning curves, and M2 test confusion-matrix analysis.
+This study compares two ImageNet-pretrained models on **PneumoniaMNIST+ 224** using full fine-tuning and the official dataset splits. Each model is trained with three random seeds (42, 43, 44). The report presents validation-based checkpoint selection, held-out test evaluation, training curves, confusion matrices, and a discussion of the findings and limitations.
 
 <div class="report-actions">
-  <a class="report-btn"
-     href="{{ '/files/bloodmnist_technical_report_uyentran.pdf' | relative_url }}"
+  <a class="report-btn report-primary-btn"
+     href="{{ '/files/pneumoniamnist_cnn_transformer_uyentran.pdf' | relative_url }}"
      download>
     ⬇ Download PDF
   </a>
 
   <a class="report-btn report-secondary-btn"
-     href="{{ '/files/bloodmnist_technical_report_uyentran.pdf' | relative_url }}"
+     href="{{ '/files/pneumoniamnist_cnn_transformer_uyentran.pdf' | relative_url }}"
      target="_blank"
      rel="noopener noreferrer">
     ↗ Open full-screen
   </a>
 </div>
 
-<div id="report-wrap" class="report-wrap">
+<div class="report-wrap">
   <iframe
-    id="report-frame"
-    src="{{ '/files/bloodmnist_technical_report_uyentran.pdf' | relative_url }}"
-    title="BloodMNIST MLP vs. CNN — Technical Report (PDF)"
+    src="{{ '/files/pneumoniamnist_cnn_transformer_uyentran.pdf' | relative_url }}"
+    title="PneumoniaMNIST+ 224 — ResNet-18 vs. DeiT-Tiny Technical Report (PDF)"
     loading="lazy">
   </iframe>
 </div>
 
 <style>
-/* Button layout */
+/* PDF action buttons */
 .report-actions {
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +41,6 @@ The study compares an MLP baseline (M0) with two CNN architectures (M1 with Flat
   margin: 1em 0 1.5em;
 }
 
-/* Shared button styling */
 .report-btn {
   display: inline-block;
   padding: 0.5em 1.1em;
@@ -54,15 +50,14 @@ The study compares an MLP baseline (M0) with two CNN architectures (M1 with Flat
   text-decoration: none !important;
 }
 
-/* Primary button: Download PDF */
-.report-btn:not(.report-secondary-btn),
-.report-btn:not(.report-secondary-btn):visited {
+/* Colors remain readable in light and dark themes. */
+.report-primary-btn,
+.report-primary-btn:visited {
   background: #1f4d7a !important;
   color: #ffffff !important;
   border: 1px solid #1f4d7a !important;
 }
 
-/* Secondary button: Open full-screen */
 .report-secondary-btn,
 .report-secondary-btn:visited {
   background: #eef5fb !important;
@@ -70,20 +65,23 @@ The study compares an MLP baseline (M0) with two CNN architectures (M1 with Flat
   border: 1px solid #1f4d7a !important;
 }
 
-/* Primary button hover and keyboard focus */
-.report-btn:not(.report-secondary-btn):hover,
-.report-btn:not(.report-secondary-btn):focus-visible {
+.report-primary-btn:hover,
+.report-primary-btn:focus-visible {
   background: #173b5e !important;
-  color: #ffffff !important;
   border-color: #173b5e !important;
+  color: #ffffff !important;
 }
 
-/* Secondary button hover and keyboard focus */
 .report-secondary-btn:hover,
 .report-secondary-btn:focus-visible {
   background: #dcebf7 !important;
-  color: #173b5e !important;
   border-color: #173b5e !important;
+  color: #173b5e !important;
+}
+
+.report-btn:focus-visible {
+  outline: 2px solid #1f4d7a;
+  outline-offset: 3px;
 }
 
 /* Embedded PDF preview */
@@ -103,29 +101,13 @@ The study compares an MLP baseline (M0) with two CNN architectures (M1 with Flat
   border: 0;
 }
 
-/* Shown only if the PDF is unavailable */
-.report-missing {
-  padding: 3em 1.5em;
-  text-align: center;
-  color: var(--global-text-color-light, #888);
+@media (max-width: 600px) {
+  .report-wrap iframe {
+    height: 75vh;
+    min-height: 450px;
+  }
 }
 </style>
-
-<script>
-(function () {
-  var url = "{{ '/files/bloodmnist_technical_report_uyentran.pdf' | relative_url }}";
-
-  fetch(url, { method: 'HEAD' })
-    .then(function (res) {
-      if (!res.ok) throw new Error('PDF unavailable');
-    })
-    .catch(function () {
-      document.getElementById('report-wrap').innerHTML =
-        '<div class="report-missing">The technical report PDF is not available yet. ' +
-        'Please check that the file has been uploaded to <code>files/</code>.</div>';
-    });
-})();
-</script>
 
 
 <!--  
@@ -155,6 +137,7 @@ The study compares an MLP baseline (M0) with two CNN architectures (M1 with Flat
 [⬇ Download the .pptx file](/hepatic-risk-prediction/files/UyenTran_Hepatic_Risk_Prediction_Slides.pptx)
 -->
 
+---  
 
 <p style="margin-top:24px;">
 <a href="{{ '/' | relative_url }}" style="background:#1f4d7a;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;"> 🏠 Back to Home </a>
