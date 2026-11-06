@@ -5,25 +5,25 @@ permalink: /code/
 author_profile: true
 ---
 
-This page provides the PyTorch implementation and executed Jupyter Notebook for **From MLP to CNN: Spatial Feature Learning and Classifier-Head Efficiency on BloodMNIST**.
+This page provides the **PyTorch implementation** and executed Jupyter notebook for **Comparative Evaluation of ImageNet-Pretrained ResNet-18 and DeiT-Tiny for Pediatric Pneumonia Classification**.
 
-The notebook contains the code, explanations, and recorded results for three models: an MLP baseline (M0), a CNN with a Flatten classifier head (M1), and a CNN with Global Average Pooling (M2). The study compares classification performance and trainable parameter counts using the official BloodMNIST splits.
+The study compares an ImageNet-pretrained convolutional neural network (ResNet-18) and Vision Transformer (DeiT-Tiny) using **PneumoniaMNIST+ 224**. Both models were fully fine-tuned under the same training protocol, with three predefined random seeds (42, 43, 44) per model. The notebook documents the six training runs, validation-based checkpoint selection, and evaluation on the official held-out test set.  
 
 ---
 
 ## Jupyter Notebook — Executable Source
 
-The original `.ipynb` file includes dataset inspection, training-derived RGB normalization, model definitions, training and validation, test evaluation, learning curves, and the M2 confusion matrix. The models were trained using one predefined random seed and shared training settings.
+The `.ipynb` file contains dataset inspection and preprocessing, pretrained model setup, training and validation functions, checkpoint selection, and final test evaluation. It also includes training curves, confusion matrices, and results across the three seeds. 
 
 <div class="code-actions">
   <a class="code-btn code-primary-btn"
-     href="{{ '/files/bloodmnist-mlp-cnn-uyentran.ipynb' | relative_url }}"
+     href="{{ '/files/pneumoniamnist-cnn-transformer-uyentran.ipynb' | relative_url }}"
      download>
     ⬇ Download .ipynb
   </a>
 
   <a class="code-btn code-secondary-btn"
-     href="https://github.com/uyentran9/bloodmnist-mlp-cnn/blob/HEAD/files/bloodmnist-mlp-cnn-uyentran.ipynb"
+     href="https://github.com/uyentran9/bloodmnist-mlp-cnn/blob/HEAD/files/pneumoniamnist-cnn-transformer-uyentran.ipynb"
      target="_blank"
      rel="noopener noreferrer">
     ↗ View on GitHub
@@ -38,13 +38,13 @@ The HTML export displays the notebook's saved Markdown explanations, code, outpu
 
 <div class="code-actions">
   <a class="code-btn code-primary-btn"
-     href="{{ '/files/bloodmnist-mlp-cnn-uyentran.html' | relative_url }}"
+     href="{{ '/files/pneumoniamnist-cnn-transformer-uyentran.html' | relative_url }}"
      download>
     ⬇ Download HTML
   </a>
 
   <a class="code-btn code-secondary-btn"
-     href="{{ '/files/bloodmnist-mlp-cnn-uyentran.html' | relative_url }}"
+     href="{{ '/files/pneumoniamnist-cnn-transformer-uyentran.html' | relative_url }}"
      target="_blank"
      rel="noopener noreferrer">
     ↗ Open full-screen
@@ -53,8 +53,8 @@ The HTML export displays the notebook's saved Markdown explanations, code, outpu
 
 <div class="notebook-wrap">
   <iframe
-    src="{{ '/files/bloodmnist-mlp-cnn-uyentran.html' | relative_url }}"
-    title="BloodMNIST MLP vs. CNN — Executed Jupyter Notebook"
+    src="{{ '/files/pneumoniamnist-cnn-transformer-uyentran.html' | relative_url }}"
+    title="PneumoniaMNIST+ 224 — ResNet-18 vs. DeiT-Tiny Executed Jupyter Notebook"
     loading="lazy">
   </iframe>
 </div>
